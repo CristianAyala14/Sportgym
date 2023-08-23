@@ -139,6 +139,27 @@
                         background-color: rgb(144, 192, 72);
                     }
                 }
+                .btn-cancelar{
+                    visibility: hidden;
+                    a{
+                        text-decoration: none;
+                        color: rgb(247, 241, 241);
+                        font-weight: bolder;
+                    }
+                    font-size: 2rem;
+                    font-weight: bolder;
+                    background-color: rgb(156, 62, 50);
+                    border: 0;
+                    &:hover{
+                        background-color: rgb(144, 192, 72);
+                    }
+                }
+                .visible{
+                    visibility: visible;
+                }
+                .ocultado{
+                    visibility: hidden;
+                }
             }
         }
     }
@@ -197,3 +218,4 @@
     }
     
 }
+

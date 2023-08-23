@@ -158,7 +158,7 @@ class Carrito{
         let index = this.listacarrito.indexOf(product_obt)
         let suma_previa = 0
         let suma_carrito = document.getElementById("suma-carrito")
-        if(product_obt && productoeliminar.cantidad > 1){
+        if(product_obt){
             suma_previa = productoeliminar.cantidad
             productoeliminar.cantidad = 0
             this.listacarrito.splice(index, 1)
@@ -169,6 +169,39 @@ class Carrito{
         this.guardarenstorage()
         this.actualizarTotalCompra();
     }
+
+    finalizarcompra(){
+        let productos_carrito = document.getElementById("productos_carrito")
+        productos_carrito.innerHTML = ""
+        this.listacarrito.forEach((producto)=>{
+            productos_carrito.innerHTML+=
+            ` 
+            <article class="card-producto" id="card-producto-${producto.id}">
+                <div class="card-section">
+                    <div  class="imgcard">
+                        <img src="${producto.img}" alt="">
+                    </div>
+                    <p class="p-card1">Producto:</p>
+                    <p class="p-card2">${producto.nombre}</p>
+                    <p class="p-card1">Cantidad:</p>
+                    <p class="p-card2">${producto.cantidad}</p>
+                    <p class="p-card1">Precio:</p>
+                    <p class="p-card2">${producto.precio*producto.cantidad}</p>
+                    <p class="p-card1">(+iva):</p>
+                    <p class="p-card2">${producto.precio*producto.cantidad/21}</p>
+                    <p class="p-card1">Total:</p>
+                    <p class="p-card2">${producto.precio*producto.cantidad/21+producto.precio*producto.cantidad}</p>
+                </div>
+            </article>
+            
+            `
+            })
+
+    }
+
+
+    
+
 }
 
 //instanciamos el carrito (unica vez)
@@ -198,7 +231,6 @@ ProductoController.mostrarcatalogo()
 
 
 document.addEventListener("DOMContentLoaded",  () => {
-
     // Verifica si hay datos en el almacenamiento local antes de intentar levantarlos
     if (localStorage.getItem("guardado_storage")) {
         Carritodecompras.levantardestorage();
@@ -208,3 +240,42 @@ document.addEventListener("DOMContentLoaded",  () => {
         Carritodecompras.levantar_sumacarrito_storage();
     }
 });
+
+//aca es donde tengo que ver.
+
+const btn_continuar = document.getElementById("btn-continuar");
+let primerevento = true;
+let segundoevento = false;
+
+btn_continuar.addEventListener("click", () => {
+    if (continuar && !segundoevento) {
+        console.log("presionado1");
+        let btn_cancelar = document.getElementById("btn-cancelar");
+        btn_cancelar.classList.add("visible");
+        btn_continuar.innerHTML = "Finalizar";
+        btn_continuar.removeEventListener("click", primerclickevento);
+        primerevento = false;
+        segundoevento = true;
+        btn_continuar.addEventListener("click", segundoclickevento);
+        Carritodecompras.finalizarcompra();
+    }
+});
+
+function primerclickevento(event) {
+    console.log("presionado1");
+    let btn_cancelar = document.getElementById("btn-cancelar");
+    btn_cancelar.classList.add("visible");
+    btn_continuar.innerHTML = "Finalizar";
+    btn_continuar.removeEventListener("click", primerclickevento);
+    continuar = false;
+    segundoClick = true;
+    btn_continuar.addEventListener("click", segundoclickevento);
+    Carritodecompras.finalizarcompra();
+}
+
+function segundoclickevento(event) {
+    console.log("presionado2");
+}
+
+
+

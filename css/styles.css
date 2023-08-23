@@ -691,6 +691,27 @@ main .main-container-beneficios .row .col .div-4 {
 #venta .venta-container .modal-content .footermodal .btn-compra:hover {
   background-color: rgb(144, 192, 72);
 }
+#venta .venta-container .modal-content .footermodal .btn-cancelar {
+  visibility: hidden;
+  font-size: 2rem;
+  font-weight: bolder;
+  background-color: rgb(156, 62, 50);
+  border: 0;
+}
+#venta .venta-container .modal-content .footermodal .btn-cancelar a {
+  text-decoration: none;
+  color: rgb(247, 241, 241);
+  font-weight: bolder;
+}
+#venta .venta-container .modal-content .footermodal .btn-cancelar:hover {
+  background-color: rgb(144, 192, 72);
+}
+#venta .venta-container .modal-content .footermodal .visible {
+  visibility: visible;
+}
+#venta .venta-container .modal-content .footermodal .ocultado {
+  visibility: hidden;
+}
 #venta .carrucel {
   color: white;
   display: flex;
@@ -740,65 +761,6 @@ main .main-container-beneficios .row .col .div-4 {
 }
 #venta .carrucel .elemento .btn-añadir:hover {
   background-color: rgb(168, 162, 162);
-}
-
-.body-container-compras {
-  background-color: rgb(105, 104, 104);
-  height: 100vh;
-  display: flex;
-  justify-content: center center;
-  align-items: center;
-}
-.body-container-compras .ventana-compra {
-  background-color: rgb(253, 223, 91);
-  padding: 2rem;
-  border-radius: 1rem;
-}
-.body-container-compras .ventana-compra header {
-  border-bottom: 1px solid black;
-}
-.body-container-compras .ventana-compra header h1 {
-  font-weight: bolder;
-  color: rgb(105, 104, 104);
-}
-.body-container-compras .ventana-compra .body-finalizar-compra {
-  margin-block: 1rem;
-  padding: 1rem;
-  background-color: rgb(224, 230, 228);
-  padding-block: 10rem;
-  border-radius: 1rem;
-}
-.body-container-compras .ventana-compra footer {
-  padding: 1rem;
-  background-color: rgb(224, 230, 228);
-  border-bottom: 1px solid black;
-  display: flex;
-  justify-content: flex-end;
-  border: 0px;
-  border-radius: 1rem;
-}
-.body-container-compras .ventana-compra footer button {
-  padding: 1rem;
-  background-color: rgb(105, 104, 104);
-  font-size: 1.5rem;
-  font-weight: bolder;
-  color: rgb(253, 223, 91);
-  border: 0px;
-  border-radius: 1rem;
-}
-.body-container-compras .ventana-compra footer button a {
-  text-decoration: none;
-  font-weight: bolder;
-  font-size: 2rem;
-  color: rgb(253, 223, 91);
-}
-.body-container-compras .ventana-compra footer button:hover {
-  background-color: rgb(54, 145, 54);
-}
-.body-container-compras .ventana-compra footer button:hover a {
-  font-size: 2rem;
-  font-weight: bolder;
-  color: white;
 }
 
 * {
