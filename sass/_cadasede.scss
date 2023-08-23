@@ -1,0 +1,240 @@
+#blayout{
+
+    .sec1{
+        height: auto;
+        padding-block: 3rem;
+        background-color: rgb(60, 148, 148);
+        background-image:linear-gradient(0deg, rgb(0, 0, 0, 0.5), rgb(0, 0, 0,0.5)) , url(../img/sede1.jpg);
+        background-size: cover;
+        background-position: center;
+        .partes{
+            &:nth-child(1){
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                h2{
+                    font-size: 10rem;
+                    font-weight: bold;
+                    color: beige;
+                    opacity: 0.8;
+                }
+                h3{
+                    font-size: 5rem;
+                    font-weight: bold;
+                    color: beige;
+                    opacity: 0.8;
+                }
+            }
+
+            &:nth-child(2){
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                flex-wrap: wrap;
+                h3{
+                    font-size: 3rem;
+                    font-weight: bolder;
+                    color: blanchedalmond;
+                    opacity: 0.8;
+                }
+                .horario{
+                    font-weight: bolder;
+                    color: blanchedalmond;
+                    opacity: 0.8;
+                }   
+            }  
+        }
+    }
+    
+    .sec2{
+        height: auto;
+        padding: 1rem;
+        background-color: rgb(255, 255, 255, 0.7);
+        border-bottom: 1px solid rgb(134, 133, 133);
+        position: sticky;
+        top: 102px;
+        z-index: 1;
+        .opciones{
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            a{
+                font-size: 2rem;
+                text-decoration: none;
+                font-weight: bold ;
+                color: rgb(53, 50, 50);
+            } 
+        }
+    }
+
+    #espacios{
+        height: auto;
+        background-color: rgb(58, 56, 58);
+        .carousel{
+            z-index: 0;
+            .carousel-inner{
+                height: 40rem;
+                img{
+                    max-height: 40rem;
+                    object-fit: contain;
+                    object-position: center;
+                }
+            }
+        }      
+    }
+
+    #servicios{
+        height: auto;
+        background-color: rgb(255, 254, 255);
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: 1rem;
+        p{
+            font-size: 1.5rem;
+            .green{
+                color: rgb(83, 158, 83),
+            }
+            .grey{
+                color:  #6c757d,
+            }
+        }
+        .cartitas{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            width: 80%;
+
+            $estado-servicio: (
+                deshabilitado: #6c757d,
+                habilitado: rgb(83, 158, 83),
+            );
+            @each $estado, $color in $estado-servicio {
+                .#{$estado} {
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+                    flex-wrap: wrap;
+                    width: 10rem;
+                    height: 10rem;
+                    border: 1px solid black;
+                    margin: 1rem;
+                    border-radius: 1rem; 
+                    background-color: $color;
+                    p{
+                        font-size: 1.3rem;
+                        font-weight: bold;
+                    }
+                }
+              }   
+        }
+    }
+
+
+    #informacion{
+        height: auto;
+        background-color: rgb(255, 254, 255);
+        padding: 1rem;
+        .infosede{
+            padding: 1rem;
+            div{
+                padding: 1rem;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                flex-direction: column;
+            }
+            h3{
+                font-size: 3rem;
+                margin-bottom: 2rem;
+            }
+            ul{
+                li{
+                    font-size: 2.5rem;
+                    list-style: none;
+                    &:nth-child(1){
+                        i{
+                            color: rgb(26, 153, 26);
+                            font-size: 2.5rem;
+                        }
+                    }
+                    &:nth-child(2) i{
+                        color: rgb(26, 39, 153);
+                        font-size: 2.5rem;
+                    }
+                }
+            }  
+        } 
+    }
+
+    .sede2{
+        height: auto;
+        padding-block: 3rem;
+        background-color: rgb(60, 148, 148);
+        background-image:linear-gradient(0deg, rgb(0, 0, 0, 0.5), rgb(0, 0, 0,0.5)) , url(../img/sede2.jpg);
+        background-size: cover; 
+        background-position: center;
+    }
+
+    .sede3{
+        height: auto;
+        padding-block: 3rem;
+        background-color: rgb(60, 148, 148);
+        background-image:linear-gradient(0deg, rgb(0, 0, 0, 0.5), rgb(0, 0, 0,0.5)) , url(../img/sede3.jpg);
+        background-size: cover;
+        background-position: center;
+    }
+
+    .sede4{
+        height: auto;
+        padding-block: 3rem;
+        background-color: rgb(60, 148, 148);
+        background-image:linear-gradient(0deg, rgb(0, 0, 0, 0.5), rgb(0, 0, 0,0.5)) , url(../img/sede4.jpg);
+        background-size: cover;
+        background-position: center;
+    }
+    
+    .sede5{
+        height: auto;
+        padding-block: 3rem;
+        background-color: rgb(60, 148, 148);
+        background-image:linear-gradient(0deg, rgb(0, 0, 0, 0.5), rgb(0, 0, 0,0.5)) , url(../img/sede5.jpg);
+        background-size: cover;
+        background-position: center;
+    }
+
+}
+
+
+@media screen and (max-width:600px){
+    #blayout .opciones a{
+        font-size: 1.8rem;
+    }
+    #blayout{
+        .sec1{
+            text-align: center;
+            .partes{
+                h2{
+                    font-size: 1rem;
+    
+                }
+            }
+    
+        }
+
+    }
+   
+ 
+   
+
+}
+
+@media screen and (max-width:400px){
+    #informacion .infosede iframe{
+        width: 15rem;
+    }
+}

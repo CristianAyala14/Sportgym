@@ -1,0 +1,194 @@
+#bootstraplayout{
+    .row1{
+        background-image: url(../img/asociate-busqueda.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        height: 40rem;
+        text-align: center; 
+        border-bottom: 1px solid rgb(36, 36, 36);
+        .busqueda{
+            opacity: 0.3;
+            font-size: 10rem;
+            color: antiquewhite;
+        }
+        .form1{
+            font-size: 2rem;
+            margin: 1rem;
+            font-family: 'Poppins', sans-serif;
+            border-radius: 3px;
+            color: rgb(87, 87, 88);
+        }
+    }
+
+    .sede{
+        height: auto;
+        padding: 2rem;
+        background-color: rgb(95, 95, 95);
+        .sedecard{
+            background-color: aliceblue;
+            width: 85%;
+            height: auto;
+            overflow: hidden;
+            border-radius: 10px;
+            display: flex;
+            box-shadow: 2px 3px 3px ;  
+            .contentcard{
+                display: flex;
+                justify-content: space-between;
+                padding: 1rem;
+                .content{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-evenly;
+                    .filtro{
+                        display: flex;
+                        p{
+                            margin-inline: 1rem;
+                            font-size: 1.5rem;
+                        }
+                    }
+                    .titulo{ 
+                        h2{
+                        font-size: 4rem;
+                        }
+                    }
+                    .texto{
+                        p{
+                            font-size: 1.5rem;
+                        }
+                    }
+                    .ubicacion{
+                        a{
+                            font-size: 1.7rem;
+                            text-decoration: none;
+                            font-weight: bold;
+                            color: rgb(240, 42, 42);
+                        }
+                    }      
+                }
+
+                .content2{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-evenly; 
+                    width: 30rem;
+                    .horario{
+                        p{
+                            font-size: 1.3rem;
+                            font-weight: bold;
+                        }
+                        .letragris{
+                            font-weight:lighter;
+                        }
+                    }
+                    .btn-sedecard{
+                        font-size: 2.6rem;
+                        padding-block: 0.2rem;
+                        padding-inline: 1.5rem;
+                        border-radius: 15px;
+                        background-color: rgb(240, 42, 42);
+                        width: 15rem;
+                        font-weight: bold;
+                        color: bisque;
+                        border: 0px;
+                        a{
+                            text-decoration: none;
+                            color: antiquewhite;
+                        }
+                        &:hover{
+                            background-color: rgb(202, 94, 94); 
+                        }
+                    }
+                }
+            }
+        }
+
+        &:nth-child(2) .sedecard{
+            .imgcard{
+                background: url(../img/sede1.jpg);
+                background-size: cover;
+                position: relative;
+                right: 10px;
+                z-index: 0;  
+            }
+        }
+        &:nth-child(3) .sedecard{
+            .imgcard{
+                background: url(../img/sede2.jpg);
+                background-size: cover;
+                position: relative;
+                right: 10px;
+                z-index: 0;  
+            }
+        }
+        &:nth-child(4) .sedecard{
+            .imgcard{
+                background: url(../img/sede3.jpg);
+                background-size: cover;
+                position: relative;
+                right: 10px;
+                z-index: 0;  
+            }
+        }
+        &:nth-child(5) .sedecard{
+            .imgcard{
+                background: url(../img/sede4.jpg);
+                background-size: cover;
+                position: relative;
+                right: 10px;
+                z-index: 0;  
+            }
+        }
+        &:nth-child(6) .sedecard{
+            .imgcard{
+                background: url(../img/sede5.jpg);
+                background-size: cover;
+                position: relative;
+                right: 10px;
+                z-index: 0;  
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 820px){
+    
+    .filtrosbusqueda{
+        display: flex;
+        flex-direction: column;
+        width: 30rem;
+    } 
+}
+
+@media screen and (max-width:750px ){
+    .sedecard .imgcard{
+      display: none;  
+    }
+    .filtrosbusqueda{
+        width: 30rem;
+    } 
+}
+
+@media screen and (max-width:600px){
+    .contentcard{
+            flex-direction: column;
+    }
+    #bootstraplayout{
+        .row1{
+        
+            .busqueda{
+                font-size: 3rem;
+                color: antiquewhite;
+            }
+            .form1{
+                font-size: 2rem;
+                
+            }
+        }
+
+       
+    }
+   
+}
+

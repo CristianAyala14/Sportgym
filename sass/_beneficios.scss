@@ -1,0 +1,75 @@
+@mixin sizes($height , $width){
+    height: $height;
+    width: $width;
+}
+
+main{
+    .main-container-beneficios{
+        .titulobeneficios{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 20rem;
+            background-image: linear-gradient(to left, black 30%, grey 100%);
+            p{
+                padding: 3rem;
+                font-size: 5rem;
+                color: rgb(226, 226, 225);
+                font-weight: bold;
+                text-align: center;
+            }
+        }
+        
+        .row{
+            border: 1px solid black;
+            height: auto;
+            .col{
+                height: 60rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                @for $i from 0 through 4 {
+                    .div-#{$i} {
+                      @include sizes(10rem,10rem);
+                      background-color: orange;
+                      margin: 1rem;
+                    }
+                }
+            }
+        }
+    }
+    
+}
+
+@media screen and (max-width: 1100px) {
+    main{
+        .main-container-beneficios{
+            .titulobeneficios{
+            
+                p{
+                    font-size: 3rem;
+                }
+            }
+        }
+    }
+    
+}
+
+@media screen and (max-width: 450px) {
+    main{
+        .main-container-beneficios{
+            .titulobeneficios{
+            
+                p{
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
+    
+}
+    
+
+
+

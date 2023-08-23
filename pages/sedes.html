@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sport GYM | Sedes</title>
+    <!-- meta descripcion -->
+    <meta name="description" content="Accede a mas de 100 sedes, equipadas con la mejor calidad.">
+    <!-- keywords -->
+    <meta name="keywords" content="gymnasio sportclub membresia rutina plan ahorro descuentos beneficos sedes">
+    <!-- font awesome dns -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <!-- ---bootstrap- -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <!-- --css 1 -->
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="bodycontainer">
+
+        <!-- header -->
+        <header  id="header1">
+            <nav class="navbar navbar-expand-lg ">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="../index.html"><img class="imagenlogo" src="../img/1.png" alt="logo" width="115rem"></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="../pages/sedes.html">Conoce las sedes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="../pages/beneficios.html">Beneficios</a>
+                            </li>
+                            <li class="nav-item"><button class="boton1"><a class="nav-link" href="../index.html#section3">Asociate</a></button></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <!-- aplico bootstrap layout -->
+        <!-- contenedor layout bootstrap para Sedes.html -->
+        <section class="container-fluid " id="bootstraplayout">
+            <!-- first row sec 1 "busqueda"-->
+            <div class="row row1 d-flex flex-column justify-content-evenly align-items-center">
+                    <h1 class="busqueda">BUSQUEDA </h1>
+                    <form class="filtrosbusqueda">
+                        <select class="form1">
+                            <option>Plan</option>
+                            <option>Plan Total</option>
+                            <option>Plan Plus</option>
+                            <option>Plan Estandar</option>
+                        </select>
+                    
+                        <select class="form1">
+                            <option>Zona</option>
+                            <option>Caba</option>
+                            <option>Gran Bs As Norte</option>
+                            <option>Gran Bs As Sur</option>
+                            <option>Gran Bs As Este</option>
+                            <option>Gran Bs As Oeste</option>
+                        </select>
+
+                        <select class="form1">
+                            <option>Actividades</option>
+                            <option>Spinning</option>
+                            <option>Boxeo</option>
+                            <option>Running</option>
+                            <option>Zumba</option>
+                            <option>Pilates</option>
+                            <option>Karate</option>
+                            <option>Full body</option>
+
+                        </select>
+                    </form>
+            </div>
+
+            <!-- rest of row = contenedoras para cartas "sedes" primera carta: -->
+            <!-- sede1 -->
+            <div class="row sede d-flex flex-column justify-content-center align-items-center">
+                <!-- comienza carta -->
+                <section class="container sedecard">
+                    <!-- img -->
+                    <div class="col-md-3 imgcard"><img src="#" alt=""> 
+                    </div>
+                    <!-- contenido -->
+                    <div class="col-md-9 contentcard">
+
+                        <!-- content left -->
+                        <div class="content">
+                            <div class="filtro">
+                                <p>Plan Total</p> <p>Gran Bs As Zona Norte</p> <p>Spinning, Boxeo</p>
+                            </div>
+                            <div class="titulo">
+                                <h2>Sport Furia</h2>
+                            </div>
+                            <div class="texto">
+                                <p>Si estás buscando sentirte bien, cuidar tu salud, mejorar tu calidad de vida y lograr el cuerpo que realmente querés tener dentro de un ambiente agradable ¿Pensaste en Sport Furia?
+                            </div>
+                            <div class="ubicacion">
+                                <a href="https://www.google.com/maps/place/V%C3%A9lez+S%C3%A1rsfield+450,+B1640HHJ+Mart%C3%ADnez,+Provincia+de+Buenos+Aires/@-34.4931078,-58.5076425,17z/data=!3m1!4b1!4m6!3m5!1s0x95bcb1aa7788443d:0xdad82a7dbd190b37!8m2!3d-34.4931122!4d-58.5050676!16s%2Fg%2F11d_6tcgbp?hl=es" target="_blank">Como llegar</a>
+                            </div>
+                        </div>
+
+                        <!-- content right -->
+                        <div class="content2">
+                            <div class="horario">
+                                <p>Lunes a viernes: <span class="letragris"> Abierto</span></p>
+                                <p>Sabados:<span class="letragris"> Hasta 18pm</span></p>
+                                <p>Domingos y feriados: <span class="letragris">Cerrado</span></p>
+                            </div>
+                            <div class="btn">
+                                <button class="btn-sedecard"><a href="./cadasede/sede1.html">Ver Sede</a></button>
+                            </div>
+                        </div>
+                    </div>
+                
+                </section>
+            </div>
+
+            <!-- sede2 -->
+            <div class="row sede d-flex flex-column justify-content-center align-items-center">
+                <!-- comienza carta -->
+                <section class="container sedecard">
+                    <!-- img -->
+                    <div class="col-md-3 imgcard"><img src="#" alt=""> 
+                    </div>
+                    <!-- contenido -->
+                    <div class="col-md-9 contentcard">
+
+                        <!-- content left -->
+                        <div class="content">
+                            <div class="filtro">
+                                <p>Plan Plus</p> <p>Gran Bs As Zona Sur</p> <p>Spinning, Zumba, Pilates</p>
+                            </div>
+                            <div class="titulo">
+                                <h2>Sport Force</h2>
+                            </div>
+                            <div class="texto">
+                                <p>Si estás buscando sentirte bien, cuidar tu salud, mejorar tu calidad de vida y lograr el cuerpo que realmente querés tener dentro de un ambiente agradable ¿Pensaste en Sport Force?
+                            </div>
+                            <div class="ubicacion">
+                                <a href="https://www.google.com/maps/place/Carabelas+1001-1099,+B1869AXO+Gerli,+Provincia+de+Buenos+Aires/@-34.6863576,-58.3758082,17z/data=!3m1!4b1!4m6!3m5!1s0x95bcccd2e85405dd:0xc08b8414f908752f!8m2!3d-34.686362!4d-58.3732333!16s%2Fg%2F11c6738qyn?hl=es" target="_blank">Como llegar</a>
+                            </div>
+                        </div>
+
+                        <!-- content right -->
+                        <div class="content2">
+                            <div class="horario">
+                                <p>Lunes a viernes: <span class="letragris"> Abierto</span></p>
+                                <p>Sabados:<span class="letragris"> Hasta 15pm</span></p>
+                                <p>Domingos y feriados: <span class="letragris">Cerrado</span></p>
+                            </div>
+                            <div class="btn">
+                                <button class="btn-sedecard"><a href="../pages/cadasede/sede2.html">Ver Sede</a></button>
+                            </div>
+                        </div>
+                    </div>
+                
+                </section>
+            </div>
+
+            <!-- sede3 -->
+            <div class="row sede d-flex flex-column justify-content-center align-items-center">
+                <!-- comienza carta -->
+                <section class="container sedecard">
+                    <!-- img -->
+                    <div class="col-md-3 imgcard"><img src="#" alt=""> 
+                    </div>
+                    <!-- contenido -->
+                    <div class="col-md-9 contentcard">
+
+                        <!-- content left -->
+                        <div class="content">
+                            <div class="filtro">
+                                <p>Plan Estandar</p> <p>Gran Bs As Zona Oeste</p> <p>Boxeo, Karate</p>
+                            </div>
+                            <div class="titulo">
+                                <h2>Sport Apolo</h2>
+                            </div>
+                            <div class="texto">
+                                <p>Si estás buscando sentirte bien, cuidar tu salud, mejorar tu calidad de vida y lograr el cuerpo que realmente querés tener dentro de un ambiente agradable ¿Pensaste en Sport Apolo?
+                            </div>
+                            <div class="ubicacion">
+                                <a href="https://www.google.com/maps/place/Melincu%C3%A9+3276,+C1417+FHH,+Buenos+Aires/@-34.6056199,-58.4998667,15.25z/data=!4m6!3m5!1s0x95bcb625b5a8cc0f:0xa3eaf6a4ac3ea97a!8m2!3d-34.6036952!4d-58.4946789!16s%2Fg%2F11c4rlv90k?hl=es" target="_blank">Como llegar</a>
+                            </div>
+                        </div>
+
+                        <!-- content right -->
+                        <div class="content2">
+                            <div class="horario">
+                                <p>Lunes a viernes: <span class="letragris"> Abierto</span></p>
+                                <p>Sabados:<span class="letragris"> Hasta 17pm</span></p>
+                                <p>Domingos y feriados: <span class="letragris">Cerrado</span></p>
+                            </div>
+                            <div class="btn">
+                                <button class="btn-sedecard"><a href="../pages/cadasede/sede3.html">Ver Sede</a></button>
+                            </div>
+                        </div>
+                    </div>
+                
+                </section>
+            </div>
+
+            <!-- sede4 -->
+            <div class="row sede d-flex flex-column justify-content-center align-items-center">
+                <!-- comienza carta -->
+                <section class="container sedecard">
+                    <!-- img -->
+                    <div class="col-md-3 imgcard"><img src="#" alt=""> 
+                    </div>
+                    <!-- contenido -->
+                    <div class="col-md-9 contentcard">
+
+                        <!-- content left -->
+                        <div class="content">
+                            <div class="filtro">
+                                <p>Plan Total</p> <p>Caba</p> <p>Pilates, running</p>
+                            </div>
+                            <div class="titulo">
+                                <h2>Sport Roco</h2>
+                            </div>
+                            <div class="texto">
+                                <p>Si estás buscando sentirte bien, cuidar tu salud, mejorar tu calidad de vida y lograr el cuerpo que realmente querés tener dentro de un ambiente agradable ¿Pensaste en Sport Roco?
+                            </div>
+                            <div class="ubicacion">
+                                <a href="https://www.google.com/maps/place/Lavalle+662,+C1007+CABA/@-34.6081183,-58.3779133,14.67z/data=!4m6!3m5!1s0x95bccacc483c17a3:0x4f9a7a2ba939a7ca!8m2!3d-34.6025965!4d-58.3760132!16s%2Fg%2F11cpf5k9_5?hl=es " target="_blank">Como llegar</a>
+                            </div>
+                        </div>
+
+                        <!-- content right -->
+                        <div class="content2">
+                            <div class="horario">
+                                <p>Lunes a viernes: <span class="letragris"> Abierto</span></p>
+                                <p>Sabados:<span class="letragris"> Hasta 20pm</span></p>
+                                <p>Domingos y feriados: <span class="letragris">Cerrado</span></p>
+                            </div>
+                            <div class="btn">
+                                <button class="btn-sedecard"><a href="../pages/cadasede/sede4.html">Ver Sede</a></button>
+                            </div>
+                        </div>
+                    </div>
+                
+                </section>
+            </div>
+
+            <!-- sede5 -->
+            <div class="row sede d-flex flex-column justify-content-center align-items-center">
+                <!-- comienza carta -->
+                <section class="container sedecard">
+                    <!-- img -->
+                    <div class="col-md-3 imgcard"><img src="#" alt=""> 
+                    </div>
+                    <!-- contenido -->
+                    <div class="col-md-9 contentcard">
+
+                        <!-- content left -->
+                        <div class="content">
+                            <div class="filtro">
+                                <p>Plan Plus</p> <p>Caba</p> <p>Spinning, boxeo, full body</p>
+                            </div>
+                            <div class="titulo">
+                                <h2>Sport Shina</h2>
+                            </div>
+                            <div class="texto">
+                                <p>Si estás buscando sentirte bien, cuidar tu salud, mejorar tu calidad de vida y lograr el cuerpo que realmente querés tener dentro de un ambiente agradable ¿Pensaste en Sport Shina?
+                            </div>
+                            <div class="ubicacion">
+                                <a href="https://www.google.com/maps/place/Suipacha,+C1008+CABA/@-34.6065789,-58.3821529,17z/data=!4m6!3m5!1s0x95bccace2f3ae5a3:0xaeef8b3ac0a126d6!8m2!3d-34.606548!4d-58.3796316!16s%2Fg%2F11bw4494yq?hl=es" target="_blank">Como llegar</a>
+                            </div>
+                        </div>
+
+                        <!-- content right -->
+                        <div class="content2">
+                            <div class="horario">
+                                <p>Lunes a viernes: <span class="letragris"> Abierto</span></p>
+                                <p>Sabados:<span class="letragris"> Hasta 16pm</span></p>
+                                <p>Domingos y feriados: <span class="letragris">Cerrado</span></p>
+                            </div>
+                            <div class="btn">
+                                <button class="btn-sedecard"><a href="../pages/cadasede/sede5.html">Ver Sede</a></button>
+                            </div>
+                        </div>
+                    </div>
+                
+                </section>
+            </div>
+            
+        </section>
+
+        <!-- footer -->
+        <footer id="footer1">
+            <div>
+                <a class="navbar-brand" href="../index.html"><img class="imagenlogo" src="../img/1.png" alt="logo" width="115rem"></a>
+            </div>
+            <br><br>
+            <div class="align-items-center">
+                <ul>
+                    <li><a href="https://www.instagram.com/sportcluboficial/" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+                    <li><a href="https://web.whatsapp.com/" target="_blank"><i class="fa-brands fa-whatsapp"></i></a></li>
+                    <li><a href="https://outlook.live.com/" target="_blank"><i class="fa-solid fa-envelope-circle-check"></i></a></li>
+                </ul>
+            </div>
+
+            <div>
+                <br><br>
+                <p>
+                    En SportClub cuidamos tu salud, por eso te recordamos que tu apto médico es indispensable al momento de iniciar una actividad física (leyes nº 139 y 12329).
+                    Copyright (c) 2022 SPORTCLUB. Todos los derechos reservados.
+                </p>
+
+            </div>
+
+        </footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+</body>
+</html>
