@@ -156,14 +156,14 @@ class Carrito{
     eliminarproducto(productoeliminar) {
         let product_obt = this.listacarrito.find((el) => el.id === productoeliminar.id)
         let index = this.listacarrito.indexOf(product_obt)
+        let suma_previa = 0
+        let suma_carrito = document.getElementById("suma-carrito")
         if(product_obt && productoeliminar.cantidad > 1){
-            productoeliminar.cantidad -= 1
-        }else{
+            suma_previa = productoeliminar.cantidad
             productoeliminar.cantidad = 0
             this.listacarrito.splice(index, 1)
+            suma_carrito.innerHTML= suma_carrito.innerHTML - suma_previa
         }
-        let suma_carrito = document.getElementById("suma-carrito")
-        suma_carrito.innerHTML--
         localStorage.setItem("suma_carrito", suma_carrito.innerHTML )
 
         this.guardarenstorage()
@@ -197,9 +197,8 @@ ProductoController.agregarproducto(producto8)
 ProductoController.mostrarcatalogo()
 
 
-document.addEventListener("DOMContentLoaded", function () {
-    // Inicializa el carrito
-    inicializarCarrito();
+document.addEventListener("DOMContentLoaded",  () => {
+
     // Verifica si hay datos en el almacenamiento local antes de intentar levantarlos
     if (localStorage.getItem("guardado_storage")) {
         Carritodecompras.levantardestorage();
