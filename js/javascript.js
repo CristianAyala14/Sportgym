@@ -57,9 +57,7 @@ class Carrito{
         this.guardarenstorage()
         this.actualizarTotalCompra();   
     }
-    calculariva(producto){
-        
-    }
+   
     guardarenstorage(){
         let guardado_storage = JSON.stringify(this.listacarrito)
         localStorage.setItem("guardado_storage", guardado_storage)
@@ -173,9 +171,6 @@ class Carrito{
     }
 }
 
-
-
-
 //instanciamos el carrito (unica vez)
 const Carritodecompras = new Carrito()
 //instanciamos producto controler (unica vez)
@@ -200,16 +195,17 @@ ProductoController.agregarproducto(producto7)
 ProductoController.agregarproducto(producto8)
 //agrego productos al catalogo (render)
 ProductoController.mostrarcatalogo()
-Carritodecompras.levantardestorage()
-Carritodecompras.levantar_sumacarrito_storage()
 
-const btn_comprar = document.getElementById("btn-comprar")
-const finalizar_compra = document.getElementById("body-finalizar-compra")
-const lista_finalizar_compra = []
-btn_comprar.addEventListener("click", ()=>{
-    Carritodecompras.forEach(producto =>{
-        
 
-        
-    })
-})
+document.addEventListener("DOMContentLoaded", function () {
+    // Inicializa el carrito
+    inicializarCarrito();
+    // Verifica si hay datos en el almacenamiento local antes de intentar levantarlos
+    if (localStorage.getItem("guardado_storage")) {
+        Carritodecompras.levantardestorage();
+    }
+    // Verifica si hay datos de suma de carrito en el almacenamiento local antes de intentar levantarlos
+    if (localStorage.getItem("suma_carrito")) {
+        Carritodecompras.levantar_sumacarrito_storage();
+    }
+});
