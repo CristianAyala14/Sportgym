@@ -662,6 +662,27 @@ main .main-container-beneficios .row .col .div-4 {
 #venta .venta-container .modal-content .body .card-producto .rest-sum:hover {
   background-color: rgb(71, 71, 71);
 }
+#venta .venta-container .modal-content .body .card-producto-finalizar-compra {
+  padding: 1rem;
+  background-color: rgb(253, 223, 91);
+  width: auto;
+  border-radius: 1rem;
+}
+#venta .venta-container .modal-content .body .card-producto-finalizar-compra .card-section {
+  padding: 1rem;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+#venta .venta-container .modal-content .body .card-producto-finalizar-compra .card-section .section-p {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.5rem;
+  flex-wrap: wrap;
+}
 #venta .venta-container .modal-content .footermodal {
   display: flex;
   justify-content: space-between;
@@ -692,7 +713,6 @@ main .main-container-beneficios .row .col .div-4 {
   background-color: rgb(144, 192, 72);
 }
 #venta .venta-container .modal-content .footermodal .btn-cancelar {
-  visibility: hidden;
   font-size: 2rem;
   font-weight: bolder;
   background-color: rgb(156, 62, 50);
@@ -705,12 +725,6 @@ main .main-container-beneficios .row .col .div-4 {
 }
 #venta .venta-container .modal-content .footermodal .btn-cancelar:hover {
   background-color: rgb(144, 192, 72);
-}
-#venta .venta-container .modal-content .footermodal .visible {
-  visibility: visible;
-}
-#venta .venta-container .modal-content .footermodal .ocultado {
-  visibility: hidden;
 }
 #venta .carrucel {
   color: white;

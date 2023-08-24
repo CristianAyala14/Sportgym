@@ -109,6 +109,30 @@
                         }
                     }
                 }
+                //en vista finalizar compra
+                .card-producto-finalizar-compra{
+                    padding: 1rem;
+                    background-color: rgb(253, 223, 91);
+                    width: auto;
+                    border-radius: 1rem ;
+                    .card-section{
+                        padding: 1rem;
+                        width: auto;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-around;
+                        
+                        .section-p{
+                            display: flex;
+                            justify-content: space-between;
+                            flex-direction: column;
+                            align-items: center;
+                            font-size: 1.5rem;
+                            flex-wrap: wrap;
+                        }
+                    }
+                    
+                }
                 
             }
             .footermodal{
@@ -140,7 +164,6 @@
                     }
                 }
                 .btn-cancelar{
-                    visibility: hidden;
                     a{
                         text-decoration: none;
                         color: rgb(247, 241, 241);
@@ -154,12 +177,7 @@
                         background-color: rgb(144, 192, 72);
                     }
                 }
-                .visible{
-                    visibility: visible;
-                }
-                .ocultado{
-                    visibility: hidden;
-                }
+                
             }
         }
     }

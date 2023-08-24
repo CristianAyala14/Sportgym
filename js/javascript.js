@@ -37,27 +37,31 @@ class Productocontroller{
             })
         })   
     }
+
+
 }
 class Carrito{
     constructor(){
         this.listacarrito = []
         this.total_compra = 0
+        this.compraFinalizada = false;
     }
     agregaralcarrito(producto) {
-        let productoExistente = this.listacarrito.find((p) => p.id === producto.id);
-        if (productoExistente) {
-            productoExistente.cantidad++;
-        } else {
-            producto.cantidad += 1
-            this.listacarrito.push(producto);
-        }
-        let suma_carrito = document.getElementById("suma-carrito")
-        suma_carrito.innerHTML++
-        localStorage.setItem("suma_carrito", suma_carrito.innerHTML )
-        this.guardarenstorage()
-        this.actualizarTotalCompra();   
-    }
-   
+        if (!this.compraFinalizada) {
+            let productoExistente = this.listacarrito.find((p) => p.id === producto.id);
+            if (productoExistente) {
+                productoExistente.cantidad++;
+            } else {
+                producto.cantidad += 1
+                this.listacarrito.push(producto);
+            }
+            let suma_carrito = document.getElementById("suma-carrito")
+            suma_carrito.innerHTML++
+            localStorage.setItem("suma_carrito", suma_carrito.innerHTML )
+            this.guardarenstorage()
+            this.actualizarTotalCompra();    
+        }   
+    }  
     guardarenstorage(){
         let guardado_storage = JSON.stringify(this.listacarrito)
         localStorage.setItem("guardado_storage", guardado_storage)
@@ -84,74 +88,76 @@ class Carrito{
         mostrar_total.innerHTML = "$" + this.total_compra;
     }
     mostrarproductos(){
-        let productos_carrito = document.getElementById("productos_carrito")
-        productos_carrito.innerHTML = ""
-        this.listacarrito.forEach( producto =>{
-            productos_carrito.innerHTML += ` 
-            <article class="card-producto" id="card-producto-${producto.id}">
-                <div class="card-section">
-                    <p class="p-card1">Producto:</p>
-                    <div  class="imgcard">
-                        <img src="${producto.img}" alt="">
+        if (!this.compraFinalizada){
+            let productos_carrito = document.getElementById("productos_carrito")
+            productos_carrito.innerHTML = ""
+            this.listacarrito.forEach( producto =>{
+                productos_carrito.innerHTML += ` 
+                <article class="card-producto" id="card-producto-${producto.id}">
+                    <div class="card-section">
+                        <p class="p-card1">Producto:</p>
+                        <div  class="imgcard">
+                            <img src="${producto.img}" alt="">
+                        </div>
                     </div>
-                </div>
-                <div class="card-section">
-                    <p class="p-card1">Nombre:</p>
-                    <p class="p-card2">${producto.nombre}</p>
-                </div>
-                <div class="card-section">
-                    <p class="p-card1">Precio:</p>
-                    <p class="p-card2">$${producto.precio}</p>
-                </div>
-                <div class="card-section">
-                    <p class="p-card1">Cantidad:</p>
-                    <div class="sumar-restar-cantidad">
-                        <button id="btn-restar-${producto.id}" class="rest-sum"><i class="fa-solid fa-minus"></i></button>
-                        <p id="p-cantidad-${producto.id}" class="p-card2"></p>
-                        <button id="btn-sumar-${producto.id}" class="rest-sum"><i class="fa-solid fa-plus"></i></button>
+                    <div class="card-section">
+                        <p class="p-card1">Nombre:</p>
+                        <p class="p-card2">${producto.nombre}</p>
                     </div>
-                </div>
-                <!-- deletebottom -->
-                <button id="btn-eliminar-${producto.id}" type="button" class="btn btn-primary delete"><i class="fa-solid fa-trash"></i></button>
-            </article> 
-            `
-        })
-
-        this.listacarrito.forEach(producto => {
-            //eliminar
-            let btn_eliminar = document.getElementById(`btn-eliminar-${producto.id}`)
-            btn_eliminar.addEventListener("click", () =>{
-                this.eliminarproducto(producto)
-                this.mostrarproductos()
+                    <div class="card-section">
+                        <p class="p-card1">Precio:</p>
+                        <p class="p-card2">$${producto.precio}</p>
+                    </div>
+                    <div class="card-section">
+                        <p class="p-card1">Cantidad:</p>
+                        <div class="sumar-restar-cantidad">
+                            <button id="btn-restar-${producto.id}" class="rest-sum"><i class="fa-solid fa-minus"></i></button>
+                            <p id="p-cantidad-${producto.id}" class="p-card2"></p>
+                            <button id="btn-sumar-${producto.id}" class="rest-sum"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <!-- deletebottom -->
+                    <button id="btn-eliminar-${producto.id}" type="button" class="btn btn-primary delete"><i class="fa-solid fa-trash"></i></button>
+                </article> 
+                `
             })
-            //sumar-restar
-            let cantidad_producto = document.getElementById(`p-cantidad-${producto.id}`);
-            cantidad_producto.innerHTML = producto.cantidad;
-            let btn_sumar = document.getElementById(`btn-sumar-${producto.id}`);
-            let btn_restar = document.getElementById(`btn-restar-${producto.id}`);
-            
-            btn_sumar.addEventListener("click", () => {
-                producto.cantidad += 1;
+    
+            this.listacarrito.forEach(producto => {
+                //eliminar
+                let btn_eliminar = document.getElementById(`btn-eliminar-${producto.id}`)
+                btn_eliminar.addEventListener("click", () =>{
+                    this.eliminarproducto(producto)
+                    this.mostrarproductos()
+                })
+                //sumar-restar
+                let cantidad_producto = document.getElementById(`p-cantidad-${producto.id}`);
                 cantidad_producto.innerHTML = producto.cantidad;
-                let suma_carrito = document.getElementById("suma-carrito")
-                suma_carrito.innerHTML++
-                localStorage.setItem("suma_carrito", suma_carrito.innerHTML )
-                this.guardarenstorage()
-                this.actualizarTotalCompra();
-            });
-
-            btn_restar.addEventListener("click", () => {
-                let suma_carrito = document.getElementById("suma-carrito")
-                if (producto.cantidad > 1) {
-                    producto.cantidad -= 1;
+                let btn_sumar = document.getElementById(`btn-sumar-${producto.id}`);
+                let btn_restar = document.getElementById(`btn-restar-${producto.id}`);
+                
+                btn_sumar.addEventListener("click", () => {
+                    producto.cantidad += 1;
                     cantidad_producto.innerHTML = producto.cantidad;
-                    suma_carrito.innerHTML--
-                }
-                localStorage.setItem("suma_carrito", suma_carrito.innerHTML )
-                this.guardarenstorage()
-                this.actualizarTotalCompra();
-            });    
-        })       
+                    let suma_carrito = document.getElementById("suma-carrito")
+                    suma_carrito.innerHTML++
+                    localStorage.setItem("suma_carrito", suma_carrito.innerHTML )
+                    this.guardarenstorage()
+                    this.actualizarTotalCompra();
+                });
+    
+                btn_restar.addEventListener("click", () => {
+                    let suma_carrito = document.getElementById("suma-carrito")
+                    if (producto.cantidad > 1) {
+                        producto.cantidad -= 1;
+                        cantidad_producto.innerHTML = producto.cantidad;
+                        suma_carrito.innerHTML--
+                    }
+                    localStorage.setItem("suma_carrito", suma_carrito.innerHTML )
+                    this.guardarenstorage()
+                    this.actualizarTotalCompra();
+                });    
+            }) 
+        }      
     }  
     eliminarproducto(productoeliminar) {
         let product_obt = this.listacarrito.find((el) => el.id === productoeliminar.id)
@@ -169,34 +175,38 @@ class Carrito{
         this.guardarenstorage()
         this.actualizarTotalCompra();
     }
-
     finalizarcompra(){
+        this.compraFinalizada = true;
         let productos_carrito = document.getElementById("productos_carrito")
         productos_carrito.innerHTML = ""
         this.listacarrito.forEach((producto)=>{
             productos_carrito.innerHTML+=
             ` 
-            <article class="card-producto" id="card-producto-${producto.id}">
+            <article class="card-producto-finalizar-compra " id="card-producto-${producto.id}">
                 <div class="card-section">
-                    <div  class="imgcard">
-                        <img src="${producto.img}" alt="">
+                    <div class="section-p">
+                        <p class="p-card1">Producto: ${producto.nombre}</p>
                     </div>
-                    <p class="p-card1">Producto:</p>
-                    <p class="p-card2">${producto.nombre}</p>
-                    <p class="p-card1">Cantidad:</p>
-                    <p class="p-card2">${producto.cantidad}</p>
-                    <p class="p-card1">Precio:</p>
-                    <p class="p-card2">${producto.precio*producto.cantidad}</p>
-                    <p class="p-card1">(+iva):</p>
-                    <p class="p-card2">${producto.precio*producto.cantidad/21}</p>
-                    <p class="p-card1">Total:</p>
-                    <p class="p-card2">${producto.precio*producto.cantidad/21+producto.precio*producto.cantidad}</p>
+                    <div class="section-p">
+                        <p class="p-card1">Cantidad: ${producto.cantidad}</p>
+                    </div>
+                    <div class="section-p">
+                        <p class="p-card1">Precio: ${producto.precio*producto.cantidad}</p>
+                    </div>
+                    <div class="section-p">
+                        <p class="p-card1">(+iva): ${producto.precio*producto.cantidad/21}</p>
+                    </div>
+                    <div class="section-p">
+                        <p class="p-card1">Total: ${producto.precio*producto.cantidad/21+producto.precio*producto.cantidad}</p>
+                    </div>  
                 </div>
             </article>
-            
             `
             })
 
+    }
+    compracancelada(){
+        this.compraFinalizada = false;
     }
 
 
@@ -241,41 +251,48 @@ document.addEventListener("DOMContentLoaded",  () => {
     }
 });
 
-//aca es donde tengo que ver.
-
+//aca estoy añadiendo eventos a los botones cancelar, y continuar, haciendo que continuar
+//se convierta en finalizar, y que al cancelar, se vuelvan a mostrar la lista de carrito y se restaure el continuar otra ves
 const btn_continuar = document.getElementById("btn-continuar");
 let primerevento = true;
 let segundoevento = false;
-
 btn_continuar.addEventListener("click", () => {
-    if (continuar && !segundoevento) {
-        console.log("presionado1");
-        let btn_cancelar = document.getElementById("btn-cancelar");
-        btn_cancelar.classList.add("visible");
-        btn_continuar.innerHTML = "Finalizar";
-        btn_continuar.removeEventListener("click", primerclickevento);
-        primerevento = false;
+    if (primerevento && !segundoevento && Carritodecompras.listacarrito.length > 0) { // si estoy en el primer evento y si es verdadero que segundoevento es falso
+        console.log("presionado1");//dejo los console loge para que sea facil estudiar y entender que pasa , por si me olvido
+        btn_continuar.innerHTML = "Finalizar"; //convierto el boton en finalizar
+        btn_continuar.removeEventListener("click", primerclickevento); //remuevo este evento del boton
+        primerevento = false; //cambio los buleanos para estar en el segundo click
         segundoevento = true;
-        btn_continuar.addEventListener("click", segundoclickevento);
+        btn_continuar.addEventListener("click", segundoclickevento); //le agrego el segundo click
         Carritodecompras.finalizarcompra();
     }
 });
-
+//primer click en funcion aparte porque al estar queriendo darle un nuevo evento dentro de otro evento,
+// llamo a esta funcion que replica todo el primer evento y me lo toma para eliminarlo
 function primerclickevento(event) {
     console.log("presionado1");
-    let btn_cancelar = document.getElementById("btn-cancelar");
-    btn_cancelar.classList.add("visible");
     btn_continuar.innerHTML = "Finalizar";
     btn_continuar.removeEventListener("click", primerclickevento);
-    continuar = false;
-    segundoClick = true;
+    primerevento = false;
+    segundoevento = true;
     btn_continuar.addEventListener("click", segundoclickevento);
     Carritodecompras.finalizarcompra();
 }
-
+//aca es lo que va a hacer el boton convertido en finalizar
 function segundoclickevento(event) {
-    console.log("presionado2");
+    console.log("presionado2")
 }
+//al presionar cancelar, tengo que reconvertir el finalizar en continar, volviendo las variables buleanas a su estado de "primer click"
+// y ademas eliminando elsegundo evento que agregue cuando se convirtio en finalizar previamente 
+const btn_cancelarcompra = document.getElementById("btn-cancelar");
+btn_cancelarcompra.addEventListener("click", ()=>{
+    console.log("compra cancelada")
+    btn_continuar.removeEventListener("click", segundoclickevento); //al presionar 
+    Carritodecompras.compracancelada() //cambio la variable que me bloqeua la posibilidad de seguir agregando y mostrando carrito
+    //cuaando estoy en vista "finalizar compra" para poder agregar y mostrar nuevamente
+    Carritodecompras.mostrarproductos()
+    primerevento = true;
+    segundoevento = false;
+    btn_continuar.innerHTML = "Continuar";
 
-
-
+})
