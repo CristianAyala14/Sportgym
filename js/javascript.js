@@ -203,20 +203,16 @@ class Carrito{
             </article>
             `
             })
-        
-
-        
-
     }
     compracancelada(){
         this.compraFinalizada = false;
     }
-
-    finalizarcompra(){
-        
+    finalizarcompra(){   
         this.listacarrito.forEach((producto) => {
             producto.cantidad = 0; // Restablecer la cantidad de cada producto a 0
         });
+        let mostrar_total = document.getElementById("total-compra");
+        mostrar_total.innerHTML = " "
         this.listacarrito =[]
         this.mostrarproductos()
         this.compraFinalizada = false;
@@ -227,10 +223,7 @@ class Carrito{
         let suma_carrito = document.getElementById("suma-carrito")
         suma_carrito.innerHTML = " "
     }
-    
-
 }
-
 //instanciamos el carrito (unica vez)
 const Carritodecompras = new Carrito()
 //instanciamos producto controler (unica vez)
@@ -255,8 +248,6 @@ ProductoController.agregarproducto(producto7)
 ProductoController.agregarproducto(producto8)
 //agrego productos al catalogo (render)
 ProductoController.mostrarcatalogo()
-
-
 document.addEventListener("DOMContentLoaded",  () => {
     // Verifica si hay datos en el almacenamiento local antes de intentar levantarlos
     if (localStorage.getItem("guardado_storage")) {
@@ -267,7 +258,6 @@ document.addEventListener("DOMContentLoaded",  () => {
         Carritodecompras.levantar_sumacarrito_storage();
     }
 });
-
 //aca estoy añadiendo eventos a los botones cancelar, y continuar, haciendo que continuar
 //se convierta en finalizar, y que al cancelar, se vuelvan a mostrar la lista de carrito y se restaure el continuar otra ves
 const btn_continuar = document.getElementById("btn-continuar");
