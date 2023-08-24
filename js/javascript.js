@@ -175,11 +175,11 @@ class Carrito{
         this.guardarenstorage()
         this.actualizarTotalCompra();
     }
-    finalizarcompra(){
-        this.compraFinalizada = true;
-        let productos_carrito = document.getElementById("productos_carrito")
-        productos_carrito.innerHTML = ""
-        this.listacarrito.forEach((producto)=>{
+    finalizarcompra_muestraprevia(){
+            this.compraFinalizada = true;
+            let productos_carrito = document.getElementById("productos_carrito")
+            productos_carrito.innerHTML = ""
+            this.listacarrito.forEach((producto)=>{
             productos_carrito.innerHTML+=
             ` 
             <article class="card-producto-finalizar-compra " id="card-producto-${producto.id}">
@@ -194,22 +194,39 @@ class Carrito{
                         <p class="p-card1">Precio: ${producto.precio*producto.cantidad}</p>
                     </div>
                     <div class="section-p">
-                        <p class="p-card1">(+iva): ${producto.precio*producto.cantidad/21}</p>
+                        <p class="p-card1">(+iva): ${producto.precio*producto.cantidad*(21/100)}</p>
                     </div>
                     <div class="section-p">
-                        <p class="p-card1">Total: ${producto.precio*producto.cantidad/21+producto.precio*producto.cantidad}</p>
+                        <p class="p-card1">Total: ${producto.precio*producto.cantidad*(21/100)+producto.precio*producto.cantidad}</p>
                     </div>  
                 </div>
             </article>
             `
             })
+        
+
+        
 
     }
     compracancelada(){
         this.compraFinalizada = false;
     }
 
-
+    finalizarcompra(){
+        
+        this.listacarrito.forEach((producto) => {
+            producto.cantidad = 0; // Restablecer la cantidad de cada producto a 0
+        });
+        this.listacarrito =[]
+        this.mostrarproductos()
+        this.compraFinalizada = false;
+        localStorage.removeItem("guardado_storage")
+        localStorage.removeItem("suma_carrito")
+        let productos_carrito = document.getElementById("productos_carrito")
+        productos_carrito.innerHTML = ""
+        let suma_carrito = document.getElementById("suma-carrito")
+        suma_carrito.innerHTML = " "
+    }
     
 
 }
@@ -264,23 +281,31 @@ btn_continuar.addEventListener("click", () => {
         primerevento = false; //cambio los buleanos para estar en el segundo click
         segundoevento = true;
         btn_continuar.addEventListener("click", segundoclickevento); //le agrego el segundo click
-        Carritodecompras.finalizarcompra();
+        Carritodecompras.finalizarcompra_muestraprevia();
     }
 });
 //primer click en funcion aparte porque al estar queriendo darle un nuevo evento dentro de otro evento,
 // llamo a esta funcion que replica todo el primer evento y me lo toma para eliminarlo
 function primerclickevento(event) {
-    console.log("presionado1");
-    btn_continuar.innerHTML = "Finalizar";
-    btn_continuar.removeEventListener("click", primerclickevento);
-    primerevento = false;
-    segundoevento = true;
-    btn_continuar.addEventListener("click", segundoclickevento);
-    Carritodecompras.finalizarcompra();
+    if (primerevento && !segundoevento && Carritodecompras.listacarrito.length > 0){
+        console.log("presionado1");
+        btn_continuar.innerHTML = "Finalizar";
+        btn_continuar.removeEventListener("click", primerclickevento);
+        primerevento = false;
+        segundoevento = true;
+        btn_continuar.addEventListener("click", segundoclickevento);
+        Carritodecompras.finalizarcompra_muestraprevia();
+    } 
 }
-//aca es lo que va a hacer el boton convertido en finalizar
+//aca es lo que va a hacer el boton convertido en finalizar. Podria ser un mensaje de confiarmacion
 function segundoclickevento(event) {
     console.log("presionado2")
+    primerevento = true;
+    segundoevento = false;
+    btn_continuar.removeEventListener("click", segundoclickevento); 
+    btn_continuar.addEventListener("click", primerclickevento);
+    btn_continuar.innerHTML = "Continuar";
+    Carritodecompras.finalizarcompra()
 }
 //al presionar cancelar, tengo que reconvertir el finalizar en continar, volviendo las variables buleanas a su estado de "primer click"
 // y ademas eliminando elsegundo evento que agregue cuando se convirtio en finalizar previamente 
@@ -294,5 +319,4 @@ btn_cancelarcompra.addEventListener("click", ()=>{
     primerevento = true;
     segundoevento = false;
     btn_continuar.innerHTML = "Continuar";
-
 })
