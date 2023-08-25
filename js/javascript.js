@@ -48,6 +48,20 @@ class Carrito{
     }
     agregaralcarrito(producto) {
         if (!this.compraFinalizada) {
+            //TOASTIFY
+            Toastify({
+
+                text: "Agregado al carrito",
+                gravity: 'bottom',
+                position: 'left',
+                duration: 2000,
+                style: {
+                    background: 'linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(107,107,101,1) 2%, rgba(233,223,72,1) 100%)'
+                    
+                }
+                
+            }).showToast();
+            //FIN TOASTIFY
             let productoExistente = this.listacarrito.find((p) => p.id === producto.id);
             if (productoExistente) {
                 productoExistente.cantidad++;
@@ -127,7 +141,7 @@ class Carrito{
                 let btn_eliminar = document.getElementById(`btn-eliminar-${producto.id}`)
                 btn_eliminar.addEventListener("click", () =>{
                     this.eliminarproducto(producto)
-                    this.mostrarproductos()
+                    // this.mostrarproductos()
                 })
                 //sumar-restar
                 let cantidad_producto = document.getElementById(`p-cantidad-${producto.id}`);
@@ -160,20 +174,49 @@ class Carrito{
         }      
     }  
     eliminarproducto(productoeliminar) {
-        let product_obt = this.listacarrito.find((el) => el.id === productoeliminar.id)
-        let index = this.listacarrito.indexOf(product_obt)
-        let suma_previa = 0
-        let suma_carrito = document.getElementById("suma-carrito")
-        if(product_obt){
-            suma_previa = productoeliminar.cantidad
-            productoeliminar.cantidad = 0
-            this.listacarrito.splice(index, 1)
-            suma_carrito.innerHTML= suma_carrito.innerHTML - suma_previa
-        }
-        localStorage.setItem("suma_carrito", suma_carrito.innerHTML )
-
-        this.guardarenstorage()
-        this.actualizarTotalCompra();
+        //sweet alert inicio
+        const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+                },
+            buttonsStyling: false
+        })
+        swalWithBootstrapButtons.fire({
+            title: '¿Estas seguro?',
+            text: "El producto se eliminara del carrito.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Borrar',
+            cancelButtonText: 'Aun no',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed){
+                //se elimina
+                let product_obt = this.listacarrito.find((el) => el.id === productoeliminar.id)
+                let index = this.listacarrito.indexOf(product_obt)
+                let suma_previa = 0
+                let suma_carrito = document.getElementById("suma-carrito")
+                if(product_obt){
+                    suma_previa = productoeliminar.cantidad
+                    productoeliminar.cantidad = 0
+                    this.listacarrito.splice(index, 1)
+                    suma_carrito.innerHTML= suma_carrito.innerHTML - suma_previa
+                }
+                localStorage.setItem("suma_carrito", suma_carrito.innerHTML )
+                this.guardarenstorage()
+                this.actualizarTotalCompra();
+                this.mostrarproductos()
+                //termina codigo eliminacion
+                swalWithBootstrapButtons.fire('Compra eliminada')
+            }else if(
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ){
+                swalWithBootstrapButtons.fire('¡Sigue comprando!')
+            }
+        })
+        //sweet alert final
     }
     finalizarcompra_muestraprevia(){
             this.compraFinalizada = true;
@@ -194,10 +237,10 @@ class Carrito{
                         <p class="p-card1">Precio: ${producto.precio*producto.cantidad}</p>
                     </div>
                     <div class="section-p">
-                        <p class="p-card1">(+iva): ${producto.precio*producto.cantidad*(21/100)}</p>
+                        <p class="p-card1">(+iva): $${producto.precio*producto.cantidad*(21/100)}</p>
                     </div>
                     <div class="section-p">
-                        <p class="p-card1">Total: ${producto.precio*producto.cantidad*(21/100)+producto.precio*producto.cantidad}</p>
+                        <p class="p-card1">Total: $${producto.precio*producto.cantidad*(21/100)+producto.precio*producto.cantidad}</p>
                     </div>  
                 </div>
             </article>
@@ -290,6 +333,15 @@ function primerclickevento(event) {
 //aca es lo que va a hacer el boton convertido en finalizar. Podria ser un mensaje de confiarmacion
 function segundoclickevento(event) {
     console.log("presionado2")
+    Swal.fire({
+    position: 'top-end',
+    icon: 'success',
+    title: 'Compra finalizada',
+    showConfirmButton: false,
+    timer: 1500
+    })
+    //termmina sweetalert
+    //comienza boton cancelar continuar de carrito
     primerevento = true;
     segundoevento = false;
     btn_continuar.removeEventListener("click", segundoclickevento); 

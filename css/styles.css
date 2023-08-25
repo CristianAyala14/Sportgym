@@ -669,7 +669,6 @@ main .main-container-beneficios .row .col .div-4 {
 #venta .venta-container .modal-content .body .card-producto-finalizar-compra .card-section {
   width: auto;
   display: flex;
-  flex-direction: column;
   justify-content: space-around;
 }
 #venta .venta-container .modal-content .body .card-producto-finalizar-compra .card-section .section-p {
