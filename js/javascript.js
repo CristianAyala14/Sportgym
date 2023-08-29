@@ -37,9 +37,8 @@ class Productocontroller{
             })
         })   
     }
-
-
 }
+
 class Carrito{
     constructor(){
         this.listacarrito = []
@@ -267,30 +266,46 @@ class Carrito{
         suma_carrito.innerHTML = " "
     }
 }
+
 //instanciamos el carrito (unica vez)
 const Carritodecompras = new Carrito()
 //instanciamos producto controler (unica vez)
 const ProductoController = new Productocontroller(Carritodecompras)
-//creamos productos
-const producto1 = new Producto(1,"Set de mancuernas", 1500, "./img/producto1.png" )
-const producto2 = new Producto(2,"Barra de dominadas", 2000, "./img/producto2.png" )
-const producto3 = new Producto(3,"Botines spoty gym", 2500, "./img/producto1.png" )
-const producto4 = new Producto(4,"Botellas x1-m2", 3000, "./img/producto1.png" )
-const producto5 = new Producto(5,"Set Pesas 5kg", 3500, "./img/producto1.png" )
-const producto6 = new Producto(6,"Guantes de boxeo fg-1", 4000, "./img/producto1.png" )
-const producto7 = new Producto(7,"Cuerda 2 pulgadas", 4500, "./img/producto1.png" )
-const producto8 = new Producto(8,"Cabezal boxing", 5000, "./img/producto1.png" )
-//agregamos losproductos al producto controler
-ProductoController.agregarproducto(producto1)
-ProductoController.agregarproducto(producto2)
-ProductoController.agregarproducto(producto3)
-ProductoController.agregarproducto(producto4)
-ProductoController.agregarproducto(producto5)
-ProductoController.agregarproducto(producto6)
-ProductoController.agregarproducto(producto7)
-ProductoController.agregarproducto(producto8)
-//agrego productos al catalogo (render)
-ProductoController.mostrarcatalogo()
+
+
+
+//asincronia  y promesas (1: simulo una BASE DE DATOS EXTERNA con este array donde creo los productos)
+const productosBD = [
+    new Producto(1, "Set de mancuernas", 1500, "./img/producto1.png"),
+    new Producto(2, "Barra de dominadas", 2000, "./img/producto1.png"),
+    new Producto(3, "Botines spoty gym", 2500, "./img/producto1.png"),
+    new Producto(4, "cuerdas xl18", 1500, "./img/producto1.png"),
+    new Producto(5, "banca multifunction", 2000, "./img/producto1.png"),
+    new Producto(6, "spoty gym pass", 2500, "./img/producto1.png")
+]
+//genero la promesa cuya respuesta resuelta sera esta lista de productos
+const productos_BD = () => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(productosBD)
+        }, 5000)
+    });
+}
+//uso .then para accionar en la respuesta positiva de la promesa dodne voy a guardar dicha respuesta (que seria la BD), en un array
+//este array va a tener instancias de Producto que necesitare agregar al producto controler, entonces lo recorro agregando a PC.
+let listaproductos_BD=[]
+productos_BD().then((res)=>{
+    listaproductos_BD = res
+    listaproductos_BD.forEach((el) => {
+        ProductoController.agregarproducto(el)
+    });
+    ProductoController.mostrarcatalogo()
+
+})
+
+
+
+
 document.addEventListener("DOMContentLoaded",  () => {
     // Verifica si hay datos en el almacenamiento local antes de intentar levantarlos
     if (localStorage.getItem("guardado_storage")) {
@@ -301,6 +316,10 @@ document.addEventListener("DOMContentLoaded",  () => {
         Carritodecompras.levantar_sumacarrito_storage();
     }
 });
+
+
+
+
 //aca estoy añadiendo eventos a los botones cancelar, y continuar, haciendo que continuar
 //se convierta en finalizar, y que al cancelar, se vuelvan a mostrar la lista de carrito y se restaure el continuar otra ves
 const btn_continuar = document.getElementById("btn-continuar");
