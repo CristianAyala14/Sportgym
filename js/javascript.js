@@ -274,14 +274,24 @@ const ProductoController = new Productocontroller(Carritodecompras)
 
 
 
+// CARGA DE PRODUCTOS (cargara primero el fetch pero como muestro productos recien en la promesa del punto 2, se muestra ahi todo)
+//1- CARGO PRODUCTOS SIMULANDO API.JSON (IMPLEMENTO AJAX, TECNOLOGIA PARA PEDIDOS Y ENVIOS DE INFORMACION, FETCH , POST/GET)
+fetch("simuloapi.json") //fetch por defecto posee la funcion GET
+    .then(resp => resp.json()) // voy a obtener una respuesta que convierto a objeto javascript con .json
+        .then(listaproductos =>{
+            listaproductos.forEach(el=>{
+                ProductoController.agregarproducto(el)
+            })
+        })
+//2-CARGO PRODUCTOS SIMULANDO PROMESAS, SETTIMEOUT, THEN, CATCH
 //asincronia  y promesas (1: simulo una BASE DE DATOS EXTERNA con este array donde creo los productos)
 const productosBD = [
-    new Producto(1, "Set de mancuernas", 1500, "./img/producto1.png"),
-    new Producto(2, "Barra de dominadas", 2000, "./img/producto1.png"),
-    new Producto(3, "Botines spoty gym", 2500, "./img/producto1.png"),
-    new Producto(4, "cuerdas xl18", 1500, "./img/producto1.png"),
-    new Producto(5, "banca multifunction", 2000, "./img/producto1.png"),
-    new Producto(6, "spoty gym pass", 2500, "./img/producto1.png")
+    new Producto(1, "Producto1", 1000, "./img/producto1.png"),
+    new Producto(2, "Producto2", 2000, "./img/producto1.png"),
+    new Producto(3, "Producto3", 3000, "./img/producto1.png"),
+    new Producto(4, "Producto4", 4000, "./img/producto1.png"),
+    new Producto(5, "Producto5", 5000, "./img/producto1.png"),
+    new Producto(6, "Producto6", 6000, "./img/producto1.png")
 ]
 //genero la promesa cuya respuesta resuelta sera esta lista de productos
 const productos_BD = () => {
@@ -306,6 +316,7 @@ productos_BD().then((res)=>{
 
 
 
+//LOS METODOS PARA LEVANTAR DE STORAGE TRABAN EL FLUJO DEL SISTEMA SI INTENTAN LEVANTAR CUANDO NO HAY NADA. ENTONCES VERIFICO LO SIGUIENTE:
 document.addEventListener("DOMContentLoaded",  () => {
     // Verifica si hay datos en el almacenamiento local antes de intentar levantarlos
     if (localStorage.getItem("guardado_storage")) {

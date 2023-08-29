@@ -1,0 +1,25 @@
+[
+    {
+        "id": 7,
+        "nombre": "api.json1",
+        "precio": 7000,
+        "img": "./img/producto1.png",
+        "cantidad": 0
+    },
+    {
+        "id": 8,
+        "nombre": "api.json2",
+        "precio": 8000,
+        "img": "./img/producto1.png",
+        "cantidad": 0
+
+    },
+    {
+        "id": 9,
+        "nombre": "api.json3",
+        "precio": 9000,
+        "img": "./img/producto1.png",
+        "cantidad": 0
+
+    }
+]
