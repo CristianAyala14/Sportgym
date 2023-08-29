@@ -278,13 +278,16 @@ const ProductoController = new Productocontroller(Carritodecompras)
 //1- CARGO PRODUCTOS SIMULANDO API.JSON (IMPLEMENTO AJAX, TECNOLOGIA PARA PEDIDOS Y ENVIOS DE INFORMACION, FETCH , POST/GET)
 fetch("simuloapi.json") //fetch por defecto posee la funcion GET
     .then(resp => resp.json()) // voy a obtener una respuesta que convierto a objeto javascript con .json
-        .then(listaproductos =>{
-            listaproductos.forEach(el=>{
+    .then(listaproductos =>{
+        listaproductos.forEach(el=>{
                 ProductoController.agregarproducto(el)
-            })
+
         })
+    })
+
+
 //2-CARGO PRODUCTOS SIMULANDO PROMESAS, SETTIMEOUT, THEN, CATCH
-//asincronia  y promesas (1: simulo una BASE DE DATOS EXTERNA con este array donde creo los productos)
+        //asincronia  y promesas (1: simulo una BASE DE DATOS EXTERNA con este array donde creo los productos)
 const productosBD = [
     new Producto(1, "Producto1", 1000, "./img/producto1.png"),
     new Producto(2, "Producto2", 2000, "./img/producto1.png"),
@@ -293,7 +296,7 @@ const productosBD = [
     new Producto(5, "Producto5", 5000, "./img/producto1.png"),
     new Producto(6, "Producto6", 6000, "./img/producto1.png")
 ]
-//genero la promesa cuya respuesta resuelta sera esta lista de productos
+        //genero la promesa cuya respuesta resuelta sera esta lista de productos
 const productos_BD = () => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
@@ -301,8 +304,8 @@ const productos_BD = () => {
         }, 5000)
     });
 }
-//uso .then para accionar en la respuesta positiva de la promesa dodne voy a guardar dicha respuesta (que seria la BD), en un array
-//este array va a tener instancias de Producto que necesitare agregar al producto controler, entonces lo recorro agregando a PC.
+        //uso .then para accionar en la respuesta positiva de la promesa dodne voy a guardar dicha respuesta (que seria la BD), en un array
+        //este array va a tener instancias de Producto que necesitare agregar al producto controler, entonces lo recorro agregando a PC.
 let listaproductos_BD=[]
 productos_BD().then((res)=>{
     listaproductos_BD = res
@@ -314,6 +317,18 @@ productos_BD().then((res)=>{
 })
 
 
+//3- para que no existan tantos then (en el punto 2) se usa una funcion asincronica donde el metodo await captura la promesa
+    //USO DE ASYNC-AWAIT
+    //detallo la funcion
+async function obtener_productos(){
+    let respuesta = await fetch("simuloapi2.json")
+    let productos_objetidos = await respuesta.json()
+    productos_objetidos.forEach(el=>{
+        ProductoController.agregarproducto(el)
+    })
+}
+    //La invoco
+obtener_productos()
 
 
 //LOS METODOS PARA LEVANTAR DE STORAGE TRABAN EL FLUJO DEL SISTEMA SI INTENTAN LEVANTAR CUANDO NO HAY NADA. ENTONCES VERIFICO LO SIGUIENTE:
@@ -327,7 +342,7 @@ document.addEventListener("DOMContentLoaded",  () => {
         Carritodecompras.levantar_sumacarrito_storage();
     }
 });
-
+//----------------------------------------------------------------------------------------------------
 
 
 
