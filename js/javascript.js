@@ -276,7 +276,7 @@ const ProductoController = new Productocontroller(Carritodecompras)
 
 // CARGA DE PRODUCTOS (cargara primero el fetch pero como muestro productos recien en la promesa del punto 2, se muestra ahi todo)
 //1- CARGO PRODUCTOS SIMULANDO API.JSON (IMPLEMENTO AJAX, TECNOLOGIA PARA PEDIDOS Y ENVIOS DE INFORMACION, FETCH , POST/GET)
-fetch("simuloapi.json") //fetch por defecto posee la funcion GET
+fetch("./json/simuloapi.json") //fetch por defecto posee la funcion GET
     .then(resp => resp.json()) // voy a obtener una respuesta que convierto a objeto javascript con .json
     .then(listaproductos =>{
         listaproductos.forEach(el=>{
@@ -321,7 +321,7 @@ productos_BD().then((res)=>{
     //USO DE ASYNC-AWAIT
     //detallo la funcion
 async function obtener_productos(){
-    let respuesta = await fetch("simuloapi2.json")
+    let respuesta = await fetch("./json/simuloapi2.json")
     let productos_objetidos = await respuesta.json()
     productos_objetidos.forEach(el=>{
         ProductoController.agregarproducto(el)
@@ -329,6 +329,9 @@ async function obtener_productos(){
 }
     //La invoco
 obtener_productos()
+
+
+
 
 
 //LOS METODOS PARA LEVANTAR DE STORAGE TRABAN EL FLUJO DEL SISTEMA SI INTENTAN LEVANTAR CUANDO NO HAY NADA. ENTONCES VERIFICO LO SIGUIENTE:
